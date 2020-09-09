@@ -10,33 +10,88 @@ import Foundation
 import Combine
 import CoreData
 import UIKit
+import SwiftUI
+
+struct Workaround {
+    static var historicalDataAsDayArray: [Day] = []
+}
 
 class DetailModel: ObservableObject {
     
     @Published var historicalData: HistoricalPrices = []
+//    @Published var historicalDataAsDayArray: [Day] = []
+//    @Published var stockShouldUpdateData = false
+//    @Published var shouldUpdateWithNonCoreData = false
     
-//    private(set) var persistentContainer: NSPersistentContainer
+    // TODO: HistoricalPrices <-> [Day]
+    
+//    let stock: Stock
     var cancellationToken: AnyCancellable?
     
-    func getHistoricalData(from symbol: String) {
-        print("symbol: \(symbol)")
-        cancellationToken = IEXMachine.requestHistorical(from: symbol)
+//    init(stock: Stock) {
+//        self.stock = stock
+//    }
+    
+    func fetchHistoricalData(stock: Stock) {
+        print("\(stock.symbol)...")
+        cancellationToken = IEXMachine.requestHistorical(from: stock.symbol!)
         .mapError({ (error) -> Error in
             print(error)
             return error
         })
-        .sink(receiveCompletion: { _ in },
-              receiveValue: {
-                self.historicalData = $0
-                self.insertDataIntoCoreData(dataPoints: $0, symbol: symbol)
-                print("~\(self.historicalData.count / 253) years of \(symbol) data")
+        .sink(receiveCompletion: { _ in }, receiveValue: {
+            self.historicalData = $0
+//            self.historicalDataAsDayArray = self.historicalPricesToDays(input: $0, stock: stock)
+            self.insertDataIntoCoreData(dataPoints: $0, symbol: stock.symbol!)
+            print("received data ☺️")
         })
     }
     
+//    func historicalPricesToDays(input: HistoricalPrices, stock: Stock) -> [Day] {
+//        var days: [Day] = []
+//        for h in input {
+//            let d = Day()
+//            d.date = h.date
+//            d.id = "\(stock.symbol!)+\(h.date)"
+//            d.close = h.close
+//            d.volume = Int64(h.volume)
+//            days.append(d)
+//        }
+//        return days
+//    }
+    
+//    private(set) var persistentContainer: NSPersistentContainer
+//    var cancellationToken: AnyCancellable?
+    
+//    func getHistoricalData(from symbol: String) {
+//        print("symbol: \(symbol)")
+//        cancellationToken = IEXMachine.requestHistorical(from: symbol)
+//        .mapError({ (error) -> Error in
+//            print(error)
+//            return error
+//        })
+//        .receive(on: RunLoop.main)
+//        .sink(receiveCompletion: { _ in },
+//              receiveValue: {
+//                self.historicalData = $0
+//                self.insertDataIntoCoreData(dataPoints: $0, symbol: symbol)
+//                // TODO: get logo if stock does not already have one
+//                print("~\(self.historicalData.count / 253) years of \(symbol) data")
+//                print(self.stockData)
+//        })
+//    }
+//    
     func insertDataIntoCoreData(dataPoints: HistoricalPrices, symbol: String) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let container = appDelegate?.persistentContainer
         let taskContext = container!.newBackgroundContext()
+        
+//        if settings.isPro {
+//            taskContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+//        }
+//        else {
+//            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy //NSMergeByPropertyStoreTrumpMergePolicy
+//        }
         taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy //NSMergeByPropertyStoreTrumpMergePolicy
         
         let fetchRequest: NSFetchRequest<Stock> = Stock.fetchRequest()
@@ -64,15 +119,20 @@ class DetailModel: ObservableObject {
                         //day.uClose
                         day.stock = f.first
                         day.volume = Int64(d.volume)
+//                        DispatchQueue.main.async {
+//                            Workaround.historicalDataAsDayArray.append(day)
+//                        }
                     }
                     do {
                         try taskContext.save()
                         print("saved to core data")
+                        // TODO: update chart from here
                     }
                     catch {
                         fatalError("unable to save batch")
                     }
                     taskContext.reset()
+//                    self.shouldUpdateWithNonCoreData = true
                 }
             }
         }
@@ -80,5 +140,4 @@ class DetailModel: ObservableObject {
             fatalError("no stock found with that symbol")
         }
     }
-    // TODO: save data to core data
 }

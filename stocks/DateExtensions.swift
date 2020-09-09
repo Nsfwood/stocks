@@ -8,18 +8,29 @@
 
 import Foundation
 
+extension String {
+    var toDate: Date {
+        let dF = DateFormatter()
+        dF.dateFormat = "yyyy-MM-dd"
+        return dF.date(from: self)!
+    }
+}
+
 extension Date {
     
-    var month: Int {
+    var inAlexanderDateFormat: Int {
+        self.getDayOfYear() + (self.yearAsInt * 1000)
+    }
+    
+    var monthAsInt: Int {
         Calendar.current.component(.month, from: self)
     }
     
-    var year: Int {
+    var yearAsInt: Int {
         Calendar.current.component(.year, from: self)
     }
     
     func getDaysFromOct171997() -> Int {
-        
         let start = DateComponents(year: 1997, month: 10, day: 17)
         return Calendar.current.dateComponents([.day], from: Calendar.current.date(from: start)!, to: self).day!
     }

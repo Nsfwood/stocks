@@ -18,6 +18,7 @@ private let dateFormatter: DateFormatter = {
 // TODO: limit ability to add more than 3 stocks to premium
 
 struct ContentView: View {
+    @EnvironmentObject var settings: SettingsStorage
     @State private var showAddModel = false
     @State private var showSettingsModel = false
     
@@ -27,19 +28,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             MasterView()
-                .navigationBarTitle(Text("Stocks"))
+                .navigationBarTitle(Text(Translation.sidebar_Navigation_Bar_Title)) // Stocks
                 .navigationBarItems(
                     leading: HStack {
-                        //EditButton()
-                        Button(
-                            action: {
-                                print("settings")
-                                self.showSettingsModel = true
-                            }
-                        ) {
-                            Image(systemName: "gear")
-                        }.sheet(isPresented: self.$showSettingsModel) {
-                            SettingsView().environmentObject(SettingsStore())
+                        Button(action: { print("settings"); self.showSettingsModel = true } ) { Image(systemName: "gear") }.sheet(isPresented: self.$showSettingsModel) {
+                            SettingsView(isPresented: self.$showSettingsModel)
+                                .modifier(SystemServices())
                         }
                     },
                     trailing: Button(
@@ -47,49 +41,72 @@ struct ContentView: View {
                             self.showAddModel = true
                             print("add button pressed")
                         }
-                    ) { 
-                        Image(systemName: "plus.circle.fill")
-                    }.sheet(isPresented: self.$showAddModel) {
-                        AddModalView().environment(\.managedObjectContext, self.viewContext)
-                    }
+                    ) { Image(systemName: "plus.circle") }
+                        .disabled(settings.savedStocks > 2 && !settings.isPro)
+                        .sheet(isPresented: self.$showAddModel) { AddModalView().environment(\.managedObjectContext, self.viewContext).modifier(SystemServices()) }
                 )
-            Text("Select a stock to view it's graph.")
-                .navigationBarTitle(Text("No Stock Selected"))
+            Text(Translation.content_NoStock_Body) // Select a stock to view it's graph.
+                .navigationBarTitle(Text(Translation.content_Navigation_Bar_Title))
             }.navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 
 struct MasterView: View {
-    @ObservedObject var settings: SettingsStore = SettingsStore()
+    @EnvironmentObject var settings: SettingsStorage
+    @ObservedObject var model = ChartModel()
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Stock.lastViewed, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Stock.isFavorite, ascending: false), NSSortDescriptor(keyPath: \Stock.name, ascending: true)],
         animation: .default)
     var stocks: FetchedResults<Stock>
     
     @Environment(\.managedObjectContext)
     var viewContext
-
+    
     var body: some View {
+//        Button("Test") { print("\(self.stocks.count) stocks saved to core data") }
         List {
+            if stocks.isEmpty {
+                Text(Translation.sidebar_Item_AddPrompt) // Press the 􀁌 button to add a stock to your portfolio.
+            }
             ForEach(stocks, id: \.self) { stock in
-                NavigationLink(
-                    destination: DetailView(stock: stock)
-                ) {
+                NavigationLink(destination: DetailView(detailStock: stock)) {
                     HStack {
                         if self.settings.stockLogo {
-                            Image("logo.\(stock.symbol!)")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40)
-                                .cornerRadius(8)
+                            Group { () -> AnyView in
+                                if let i = stock.logo {
+                                    if let ui = UIImage(data: i) {
+                                        return AnyView(
+                                            Image(uiImage: ui).resizable().scaledToFit().frame(width: 40, height: 40).cornerRadius(8)
+                                        )
+                                    }
+                                    else {
+                                        return AnyView(
+                                            Image("logo.missing")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 40)
+                                                .cornerRadius(8)
+                                        )
+                                    }
+                                }
+                                else {
+                                    return AnyView(Image("logo.missing").resizable().scaledToFit().frame(height: 40).cornerRadius(8))
+                                }
+                            }
                         }
                         Text("\(stock.symbol ?? "error")")
                             .fontWeight(.bold)
                             .lineLimit(1)
                         Spacer()
-                        Text(String(format: "$%.2f", self.getLastClose(from: stock)))
+                        if stock.isFavorite {
+                            Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemOrange))
+                        }
+                        Text(getCurrencyFormat(from: self.getLastClose(from: stock))) // String(format: "$%.2f", self.getLastClose(from: stock))
                             .lineLimit(1)
-                    }
+                    }.onAppear(perform: {
+                        self.settings.savedStocks = self.stocks.count
+                        // TODO: update all symbols and historical data
+                    })
                 }
             }
             .onDelete { indices in
@@ -98,18 +115,23 @@ struct MasterView: View {
         }
     }
     
+    func updateStockData(stock: Stock) {
+//        model.getHistoricalData(from: stock.symbol!)
+    }
+    
     func deleteStock() {
         
     }
     
     func getLastClose(from stock: Stock) -> Double {
-        
+//        print("getting last closing price")
+//        return 0.0
         let sorted = (stock.days?.allObjects as? [Day])?.sorted { $0.date! < $1.date! }
-        
+
 //        for x in sorted! {
 //            print("\(stock.symbol), \(x.close), \(x.date)")
 //        }
-        
+
 //        if let s = sorted?.isEmpty {
 //            print("data for \(stock.symbol): \(s)")
 //            print(sorted)
@@ -123,108 +145,61 @@ struct MasterView: View {
         }
         
     }
-    
-//    fileprivate func sortDaysData(stock: Stock) {
-//        var sortedDays: [Day]?
+}
+
+//struct DetailView: View {
+//    @ObservedObject var settings: SettingsStore = SettingsStore()
+//    @State private var showFilterPopover: Bool = false
+////    @ObservedObject var stock: Stock
+//    @ObservedObject var model = DetailModel()
+//    @State var showIEXAlert = false
+//    @Binding var detailStock: Stock
 //
-//        if let days = stock.days {
-//            let daysArray = days.allObjects as? [Day] {
-//                sortedDays = daysArray.sorted(by: { (day1, day2) -> Bool in
-//                    guard let date1 = day1.date else {
-//                        fatalError("###\(#function): day is missing a date! \(day1)")
+//    var data = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010]
+//    
+//    var body: some View {
+//        VStack {
+//            ChartView(stockToFetchDataFor: $detailStock)
+//            XAxisLabelView()
+//            .frame(minWidth: 0, maxWidth: .infinity)
+//            .padding(.bottom)
+//            if !settings.isPro {
+//                Group {
+//                    HStack {
+//                        Text("Upgrade to Premium to view more than 5 years and filter the chart")
+//                        Button("Upgrade to Premium") { print("upgrade") }
+//                            .frame(minWidth: 100, idealWidth: 100, maxWidth: 200, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
+//                            .buttonStyle(FilledBlueButton())
 //                    }
-//                    guard let date2 = day2.date else {
-//                        fatalError("###\(#function): day is missing a date! \(day2)")
-//                    }
-//
-//                    return name1.compare(name2) == .orderedAscending
-//                })
+//                    
+//                }.padding()
+//            }
+//            Divider()
+//            Button("Data provided by IEX Cloud") { self.showIEXAlert = true } // link to https://iexcloud.io
+//                .foregroundColor(Color(UIColor.systemGray3))
+//            .actionSheet(isPresented: $showIEXAlert) {
+//                ActionSheet(
+//                    title: Text("IEX Cloud"),
+//                    message: Text("Open iexcloud.io in Safari?"),
+//                    buttons: [ .cancel(), .default(Text("Yes")) { print("open safari") } ] )
 //            }
 //        }
+//        .navigationBarTitle(Text("\(detailStock.name ?? "error")"), displayMode: .inline)
+//        .navigationBarItems(leading:
+//            HStack {
+//                Button( action: { print("expand/minimize") } ) { Image(systemName: "arrow.up.left.and.arrow.down.right") }
+//                Button("Download Data") { self.model.getHistoricalData(from: self.detailStock.symbol!) }
+//            }
+//            ,trailing: HStack { Button("Show popover") { self.showFilterPopover = true }.popover(isPresented: self.$showFilterPopover) { FilterPopoverView() }
+//                Button( action: { print("favorite") } ) { Image(systemName: "star") }
+//            }
+//            )
+//            .padding(.all, 20)
 //    }
-    
-}
-
-// TODO: create iphone landscapr view that only shows graph
-
-struct DetailView: View {
-    @ObservedObject var settings: SettingsStore = SettingsStore()
-    @State private var showFilterPopover: Bool = false
-    @ObservedObject var stock: Stock
-    @ObservedObject var model = DetailModel()
-    @State var showIEXAlert = false
-
-    var data = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010]
-    
-    var body: some View {
-        VStack {
-            ChartView(stock: stock)
-            // TODO: make seperate legend view
-            HStack {
-                HStack {
-                    Text("Jan").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Feb").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Mar").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Apr").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("May").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Jun").frame(minWidth: 0, maxWidth: .infinity)
-                }.frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
-                HStack {
-                    Text("Jul").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Aug").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Sep").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Oct").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Nov").frame(minWidth: 0, maxWidth: .infinity)
-                    Text("Dec").frame(minWidth: 0, maxWidth: .infinity)
-                }.frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
-            }.frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
-            .padding(.bottom)
-            HStack {
-//                Button("Favorite") { print("favorite") }
-//                    .frame(minWidth: 100, idealWidth: 100, maxWidth: 200, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
-//                    .buttonStyle(FilledOrangeButton())
-                Button("Upgrade to Premium") { print("upgrade") }
-                    .frame(minWidth: 100, idealWidth: 100, maxWidth: 200, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
-                    .buttonStyle(FilledBlueButton())
-            }.padding()
-            if !settings.isPro {
-                Group {
-                    Text("Upgrade to Premium to view more than 5 years and filter the chart")
-                }
-            }
-            Divider()
-            Button("Data provided by IEX Cloud") { self.showIEXAlert = true } // link to https://iexcloud.io
-                .foregroundColor(Color(UIColor.systemGray3))
-            .actionSheet(isPresented: $showIEXAlert) {
-                ActionSheet(
-                    title: Text("IEX Cloud"),
-                    message: Text("Open iexcloud.io in Safari?"),
-                    buttons: [ .cancel(), .default(Text("Yes")) { print("open safari") } ] )
-            }
-        }
-        .navigationBarTitle(Text("\(stock.name ?? "error")"), displayMode: .inline)
-        .navigationBarItems(leading:
-            HStack {
-                Button( action: { print("expand/minimize") } ) { Image(systemName: "arrow.up.left.and.arrow.down.right") }
-                Button("Download Data") { self.model.getHistoricalData(from: self.stock.symbol!) }
-            }
-            ,trailing: HStack { Button("Show popover") { self.showFilterPopover = true }.popover(isPresented: self.$showFilterPopover) { FilterPopoverView() }
-                Button( action: { print("favorite") } ) { Image(systemName: "star") }
-            }
-            )
-            .padding(.all, 20)
-    }
-}
+//}
 
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return ContentView().environment(\.managedObjectContext, context)
-    }
-}
-
-struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return ContentView().environment(\.managedObjectContext, context)

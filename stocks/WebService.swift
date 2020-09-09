@@ -24,6 +24,17 @@ enum IEXMachine {
 }
 
 extension IEXMachine {
+    
+    static func requestCEOInfo(from symbol: String) -> AnyPublisher<CEOCompensationResponse, Error> {
+        let request = URLRequest(url: createCEOURL(from: symbol))
+        
+        print("requestiny CEO data... weight: 20")
+        
+        return apiMachine.run(request)
+            .map(\.value)
+            .eraseToAnyPublisher()
+    }
+    
     static func requestQuote(from symbol: String) -> AnyPublisher<QuoteResponse, Error> {
         let request = URLRequest(url: createQuoteURL(symbol: symbol))
         
@@ -120,25 +131,31 @@ func createHistoricalURL(symbol: String) -> URL {
 
 func createQuoteURL(symbol: String) -> URL {
     //GET /stock/{symbol}/quote/{field}
-    let endpoint = "/stock/" + symbol + "/quote"
+    let endpoint = "stock/" + symbol + "/quote"
     
     return URL(string: sandboxAPI + version + endpoint + token + sandboxToken)!
 }
 
 func createPriceURL(symbol: String) -> URL {
-    let endpoint = "/stock/" + symbol + "/price"
+    let endpoint = "stock/" + symbol + "/price"
     
     return URL(string: sandboxAPI + version + endpoint + token + sandboxToken)!
 }
 
 func createLogoURL(symbol: String) -> URL {
-    let endpoint = "/stock/" + symbol + "/logo"
+    let endpoint = "stock/" + symbol + "/logo"
     
     return URL(string: sandboxAPI + version + endpoint + token + sandboxToken)!
 }
 
 func createSearchURL(from fragment: String) -> URL {
-    let endpoint = "/search/"
+    let endpoint = "search/"
+    
+    return URL(string: sandboxAPI + version + endpoint + token + sandboxToken)!
+}
+
+func createCEOURL(from symbol: String) -> URL {
+    let endpoint = "stock/\(symbol)/ceo-compensation"
     
     return URL(string: sandboxAPI + version + endpoint + token + sandboxToken)!
 }

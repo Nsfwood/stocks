@@ -32,6 +32,23 @@ struct QuoteResponse: Codable {
     let changePercent: Double?
 }
 
+// weight: 20
+struct CEOCompensationResponse: Codable {
+    let symbol: String
+    let name: String
+    let companyName: String
+    let location: String
+    let salary: Int
+    let bonus: Int
+    let stockAwards: Int
+    let optionAwards: Int
+    let nonEquityIncentives: Int
+    let pensionAndDeferred: Int
+    let otherComp: Int
+    let total: Int
+    let year: String
+}
+
 // GET /stock/{symbol}/ceo-compensation
 //{
 //    "symbol": "AVGO",
@@ -48,9 +65,6 @@ struct QuoteResponse: Codable {
 //    "total": 103211163,
 //    "year": "2017"
 //}
-
-
-// premium only
 
 // {"url":"o/io/.ggs7ileon/cmpoogplgelhd3i:/a.tpuags/polaxsc.pshD-gI/tSeroot"}
 

@@ -20,6 +20,7 @@ struct AddModalView: View {
 //    @ObservedObject var quoteData: QuoteDataProvider
     @ObservedObject var model = AddModalModel()
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var settings: SettingsStorage
     
     var receivedQuote: QuoteResponse?
     
@@ -29,15 +30,15 @@ struct AddModalView: View {
     var body: some View {
         
         VStack {
-            Text("Add Stock")
+            Text(Translation.add_Title) // "Add Stock"
                 .font(.title)
             HStack {
-                Button("Cancel") {
+                Button(Translation.cancel_Button) { // Cancel
                     print("cancelled")
                     self.presentationMode.wrappedValue.dismiss()
                 }
                 TextField(
-                    "Enter stock symbol",
+                    Translation.add_Search_Placeholder,
                     text: $searchText,
                     onEditingChanged: { _ in print("edited") },
                     onCommit: {
@@ -52,49 +53,76 @@ struct AddModalView: View {
                 Button(
                     action: {
                         print("searched")
-                        if self.searchText != self.oldSearchTextToPreventDuplicateSearches {
-                            self.oldSearchTextToPreventDuplicateSearches = self.searchText
-                            print("searching...")
-                            self.model.getQuote(from: self.searchText)
-                        }
+                        self.oldSearchTextToPreventDuplicateSearches = self.searchText
+                        print("searching...")
+                        self.model.getQuote(from: self.searchText)
                     }
                 ) {
                     Image(systemName: "magnifyingglass")
                 }
             }
-            Text("")
+            Text(Translation.add_Search_Exchanges_Subtitle) // Searchable exchanges: NYS, NAS, PSE, BATS, ASE"
                 .foregroundColor(Color(UIColor.systemGray3))
-            Text("US exchanges: NYS, NAS, PSE, BATS, ASE \nInternational exchanges: TSE, LON, KRX, MEX, BOM, TSX, TAE, PAR, ETR, AMS, BRU, DUB, LIS, ADS")
-                .foregroundColor(Color(UIColor.systemGray3))
-            Spacer()
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Name: \(model.quotes.first?.companyName ?? "___")")
-                    Text("Updated: \(model.quotes.first?.latestTime ?? "___")")
-                }.padding(.trailing, 10)
-                VStack(alignment: .trailing) {
-                    Text(String(format: "Latest Price: $%.2f", model.quotes.first?.latestPrice ?? 0.0))
-                    Text(String(format: "Change: %.2f%%", (model.quotes.first?.changePercent ?? 0.0) * 100))
-                }.padding(.leading, 10)
+            Divider()
+            if model.foundValidStock == false && model.searchForStock == true {
+                Text(Translation.add_Result_UnableToFind)
             }
+            Group {
+                Group { () -> AnyView in
+                    if let i = self.model.imageData {
+                        if let ui = UIImage(data: i) {
+                            return AnyView(
+                                Image(uiImage: ui)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(8)
+                            )
+                        }
+                        else {
+                            return AnyView(
+                                Image("logo.missing")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 100)
+                                    .cornerRadius(8)
+                            )
+                        }
+                    }
+                    else {
+                        return AnyView(Image("logo.missing").resizable().scaledToFit().frame(height: 100).cornerRadius(8))
+                    }
+                }
+                Text("Name: \(model.quotes.first?.companyName ?? "___")\nUpdated: \(model.quotes.first?.latestTime ?? "___")\nLatest Price: \(getCurrencyFormat(from: model.quotes.first?.latestPrice ?? 0.0))\nChange: \(getPercentFormat(from: model.quotes.first?.changePercent ?? 0.0))")
+            }.padding()
+//            HStack {
+//                VStack(alignment: .leading) {
+//                    Text("Name: \(model.quotes.first?.companyName ?? "___")")
+//                    Text("Updated: \(model.quotes.first?.latestTime ?? "___")")
+//                }.padding(.trailing, 10)
+//                VStack(alignment: .trailing) {
+//                    Text(String(format: "Latest Price: $%.2f", model.quotes.first?.latestPrice ?? 0.0))
+//                    Text(String(format: "Change: %.2f%%", (model.quotes.first?.changePercent ?? 0.0) * 100))
+//                }.padding(.leading, 10)
+//            }.padding()
             Spacer()
-            Text("Upgrade to Premium for search by name and fragments.")
+            if !settings.isPro {
+                Text(Translation.add_Premium_SearchByNF)
+            }
             if model.foundValidStock {
                 Button("Add \(model.quotes.first?.companyName ?? "error") to your stocks") {
                     
                     if let s = self.model.quotes.first {
-                        Stock.create(in: self.viewContext, with: s.companyName, symbol: s.symbol, latestPrice: s.latestPrice)
+                        Stock.create(in: self.viewContext, with: s.companyName, symbol: s.symbol, latestPrice: s.latestPrice, image: self.model.imageData)
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }
-                    .frame(minWidth: 100, idealWidth: 100, maxWidth: .infinity, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
-                    .foregroundColor(Color.white)
-                    .background(Color.init(UIColor.systemBlue))
-                    .cornerRadius(8)
-                    .padding()
+            .buttonStyle(FilledBlueButton())
+            .frame(minWidth: 100, idealWidth: 150, maxWidth: .infinity)
             }
         }.padding()
     }
+    
 }
 
 struct AddModalView_Previews: PreviewProvider {

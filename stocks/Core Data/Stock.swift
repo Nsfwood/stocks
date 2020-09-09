@@ -12,8 +12,13 @@ import CoreData
 
 extension Stock {
     
-    static func create(in managedObjectContext: NSManagedObjectContext, with name: String, symbol: String, latestPrice: Double) {
+    func getCoreDataStockFrom(symbol: String) {
+        
+    }
+    
+    static func create(in managedObjectContext: NSManagedObjectContext, with name: String, symbol: String, latestPrice: Double, image: Data?) {
         let newStock = self.init(context: managedObjectContext)
+        newStock.logo = image
         newStock.name = name
         newStock.symbol = symbol
         newStock.lastViewed = Date()

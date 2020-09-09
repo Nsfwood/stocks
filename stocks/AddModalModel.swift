@@ -12,12 +12,25 @@ import Combine
 class AddModalModel: ObservableObject {
     
     @Published var foundValidStock = false
+    @Published var searchForStock = false
     @Published var quotes: [QuoteResponse] = []
     @Published var searchResults: [SearchResponse] = []
+    @Published var imageData: Data?
     
     var cancellationToken: AnyCancellable?
     
+    func getLogo(from symbol: String) {
+        print("requesting logo... for \(symbol)")
+        print("https://storage.googleapis.com/iex/api/logos/\(symbol.uppercased()).png")
+        cancellationToken = URLSession.shared.dataTaskPublisher(for: URL(string: "https://storage.googleapis.com/iex/api/logos/\(symbol.uppercased()).png")!)
+            .map{$0.data}
+            .replaceError(with: nil)
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.imageData, on: self)
+    }
+    
     func getQuote(from symbol: String) {
+        self.searchForStock = true
         print("symbol: \(symbol)")
         cancellationToken = IEXMachine.requestQuote(from: symbol)
         .mapError({ (error) -> Error in
@@ -28,60 +41,9 @@ class AddModalModel: ObservableObject {
         .sink(receiveCompletion: { _ in },
               receiveValue: {
                 self.foundValidStock = true
+                self.getLogo(from: symbol)
                 self.quotes.append($0.self)
         })
     }
     
 }
-//    @Published var isLoading: Bool = false
-//    @Published var quoteData: QuoteResponse!
-//    @Published var searchData: SearchResponse!
-//
-//    var searchTerm = ""
-//
-//    private let searchTappedSubject = PassthroughSubject<Void, Error>()
-//    private var disposeBag = Set<AnyCancellable>()
-//
-//    init() {
-//        searchTappedSubject
-//    }
-    
-//    func getQuoteData(searchTerm: String) -> AnyPublisher<QuoteResponse, Error> {
-//        return URLSession.shared.dataTaskPublisher(for: URLRequest(url: createQuoteURL(symbol: searchTerm)))
-//            .map { $0.data }
-//            .mapError { $0 as Error }
-//            .decode(type: QuoteResponse.self, decoder: JSONDecoder)
-//    }
-    
-//}
-
-//class AddModalModel: ObservableObject {
-//    @Published var quote: QuoteResponse?
-//    var cancellationToken: AnyCancellable?
-//
-//    init(symbol: String) {
-//        getQuote(from: symbol)
-//    }
-//
-//    func getQuote(from symbol: String) {
-//        cancellationToken = IEXMachine.requestQuote(from: symbol)
-//        .mapError({ (error) -> Error in
-//            print(error)
-//            return error
-//        })
-//        .sink(receiveCompletion: { _ in },
-//              receiveValue: {
-//                self.quote = $0.self
-//        })
-//    }
-//}
-//
-//class QuoteDataProvider: ObservableObject {
-//    let didChange = PassthroughSubject<QuoteDataProvider, Never>()
-//
-//    var quoteData: QuoteResponse! {
-//        didSet {
-//            didChange.send(self)
-//        }
-//    }
-//}

@@ -37,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
+        
+        print("loading persistent store...")
+        
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -59,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            else {
+                print("persistent store loaded")
+            }
         })
         return container
     }()
@@ -69,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
+                print("saved to core data")
                 try context.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.

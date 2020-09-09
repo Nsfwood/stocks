@@ -10,57 +10,60 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class SettingsStore: ObservableObject {
+class SettingsStorage: ObservableObject {
+    
     private enum Keys {
         static let pro = "lines.pro"
         static let icon = "lines.icon"
         static let logo = "lines.logo.stocks"
         static let graphArea = "lines.graph.area"
+        static let colorSet = "lines.graph.colorset"
     }
-    
     private let cancellable: Cancellable
     private let defaults: UserDefaults
-    
     let objectWillChange = PassthroughSubject<Void, Never>()
-    
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        
         defaults.register(defaults: [Keys.pro: false, Keys.icon: 0])
-        
         cancellable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).map { _ in () }.subscribe(objectWillChange)
     }
+    
+    // filter
+    @Published var filterXRange: Bool = false
+    @Published var xRangeStart: Date = Date()
+    @Published var xRangeEnd: Date = Date()
+    @Published var includeAllYears: Bool = true
+    @Published var yRangeStart: String = ""
+    @Published var yRangeEnd: String = ""
+    
+    // settings
+    @Published var startChartsAtJan1 = false
+//    @Published var isPro = false
+    @Published var icon = 0
+    
+    // move to settings bundle
+    @Published var stockLogo = true
+    @Published var showGraphArea = false
+    @Published var colorSet = 0
+    
+    // other
+    @Published var canAccessInternet = true
+    @Published var shouldUpdateChart = true
+    @Published var savedStocks = 0
     
     var isPro: Bool {
         set { defaults.set(newValue, forKey: Keys.pro) }
         get { defaults.bool(forKey: Keys.pro) }
     }
     
-    var icon: Int {
-        set { defaults.set(newValue, forKey: Keys.icon) }
-        get { defaults.integer(forKey: Keys.icon) }
-    }
-    
-    var stockLogo: Bool {
-        set { defaults.set(newValue, forKey: Keys.logo) }
-        get { defaults.bool(forKey: Keys.logo) }
-    }
-    
-    var showGraphArea: Bool {
-        set { defaults.set(newValue, forKey: Keys.graphArea) }
-        get { defaults.bool(forKey: Keys.graphArea) }
-    }
-    
 }
 
-extension SettingsStore {
-    func unlockPremium() {
-        // TODO: preium subscription
-//        isPro = 
+extension SettingsStorage {
+    func unlockPro() {
+            
     }
     
-    func restorePurchase() {
-        // TODO: restore premium
-//        isPro =
+    func restorePro() {
+        
     }
 }
