@@ -125,7 +125,7 @@ struct ChartViewController: UIViewControllerRepresentable {
 //            }
             else {
                 // TODO: add label subview
-                print("No data available for \(stockToFetchDataFor.symbol)")
+                print("No data available for \(stockToFetchDataFor.symbol ?? "STCK")")
                 
 //                let appDelegate = UIApplication.shared.delegate as? AppDelegate
 //                let container = appDelegate?.persistentContainer
