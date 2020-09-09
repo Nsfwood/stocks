@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  stocks
+
+  Created by Alexander Rohrig on 7/15/20.
+  Copyright © 2020 Alexander Rohrig. All rights reserved.
+*/
+"sidebar_Navigation_Bar_Title" = "Aktien";
+"content_NoStock_Body" = "Wählen Sie eine Aktie aus, um sein Diagramm anzuzeigen.";
+"content_Navigation_Bar_Title" = "Keine Aktie Ausgewählt";
+"Press 􀁌 to add a stock to your portfolio." = "Drücken Sie 􀁌, um Ihrer Aktien eine Aktie hinzuzufügen.";
+"ADD_TITLE" = "Aktie Hinzufügen";
+"CANCEL_BUTTON" = "Abbrechen";
+"ADD_SEARCH_PLACEHOLDER" = "Nach einem Tickersymbol Suchen";
+"ADD_SEARCH_EXCHANGES_SUBTITLE" = "Durchsuchbare Börsen: NYS, NAS, PSE, BATS, ASE";
+"ADD_PREMIUM_SEARCHBYN+F" = "Upgrade to Premium for search by name and fragments."; // TODO:
+"ADD_RESULT_UNABLETOFIND" = "Unable to find a stock with that symbol."; // TODO:
+"ADD_RESULT_BUTTON" = "Add @s to your portfolio"; // TODO:
+"SETTINGS_TITLE" = "Einstellungen";
+"DONE_BUTTON" = "Fertig";
+"CONTENT_PREMIUM_5+F" = "Upgrade to Premium to view more than 5 years of data and filter the chart"; // TODO:
+"UPGRADE_BUTTON" = "Upgrade auf Premium";
+"PROVIDED_BY_IEX" = "Data provided by IEX Cloud";
+"FILTER_X_TITLE" = "x-Achsen";
+"FILTER_X_SUBTITLE" = "'Include All Years' will show a line for each year of data, using only the selected month and day as the range."; // TODO:
+"FILTER_X_START" = "X Axis Start Date"; // TODO:
+"FILTER_X_END" = "X Axis End Date"; // TODO:
+"FILTER_X_INCLUDE" = "Jedes Jahr Einschließen";
+"FILTER_X_CLEAR" = "x-Achsenfilter Löschen";
+"FILTER_Y_TITLE" = "y-Achsen";
+"FILTER_Y_START" = "Start of Y Range (Must be a number)"; // TODO:
+"FILTER_Y_END" = "End of Y Range (Must be a number)"; // TODO:
+"FILTER_Y_CLEAR" = "y-Achsenfilter Löschen";

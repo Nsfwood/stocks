@@ -18,12 +18,11 @@ struct ChartView: UIViewRepresentable {
 //        var close: Double
 //    }
     
-    init(stock: Stock) {
-        stockToFetchDataFor = stock
-    }
+//    init(stock: Stock) {
+//        stockToFetchDataFor = stock
+//    }
     
-    var stockToFetchDataFor: Stock!
-    
+    var stockToFetchDataFor: Stock
     typealias UIViewType = Chart
     
     func makeUIView(context: Context) -> Chart {
@@ -73,7 +72,6 @@ struct ChartView: UIViewRepresentable {
 //        print(count)
         
         // MARK: split by year (CoreData)
-        // TODO: start chart at jan 1
         if let stockData = stockToFetchDataFor.days?.allObjects as? [Day] {
             if stockData.count > 10 {
                 let stockDataSorted = stockData.sorted(by: { $0.date! < $1.date! })
@@ -84,8 +82,8 @@ struct ChartView: UIViewRepresentable {
                 var yearToCompare = dF.date(from: stockDataSorted[0].date!)
                         while goal != 0 {
 
-                            var dateToCompare = dF.date(from: stockDataSorted[histCount].date!)!
-                            print("\(goal) items \(chartCount) line \(stockDataSorted[histCount].date) date \(dateToCompare) date")
+                            let dateToCompare = dF.date(from: stockDataSorted[histCount].date!)!
+//                            print("\(goal) items \(chartCount) line \(String(describing: stockDataSorted[histCount].date)) date \(dateToCompare) date")
 
                             if yearToCompare!.isEqual(to: dateToCompare, toGranularity: .year) {
                                 arrayOfChartData.append((x: dateToCompare.getDayOfYear(), y: stockDataSorted[histCount].close))
@@ -113,7 +111,7 @@ struct ChartView: UIViewRepresentable {
                         
                         var colorCount = 0
                         for c in arrayOfChartSeries.reversed() {
-                            c.area = false // TODO: allow user to toggle
+                            c.area = false
                             c.color = colors[colorCount]
                             c.line = true
                             colorCount += 1
@@ -137,51 +135,6 @@ struct ChartView: UIViewRepresentable {
                         chart.showXLabelsAndGrid = false
             }
         }
-        
-        // MARK: split by year (json)
-//        let dF = DateFormatter()
-//        dF.dateFormat = "yyyy-MM-dd"
-//        var yearToCompare = dF.date(from: HistoricalData[0].date)
-//        while goal != 0 {
-//
-//            var dateToCompare = dF.date(from: HistoricalData[histCount].date)!
-////            print("\(goal) items \(chartCount) line \(HistoricalData[histCount].date) date \(dateToCompare) date")
-//
-//            if yearToCompare!.isEqual(to: dateToCompare, toGranularity: .year) {
-//                arrayOfChartData.append((x: dateToCompare.getDayOfYear(), y: HistoricalData[histCount].uClose))
-//                count += 1
-//                histCount += 1
-//                goal -= 1
-//            }
-//            else {
-//                arrayOfChartSeries.append(ChartSeries(data: arrayOfChartData))
-//                arrayOfChartData.removeAll()
-//                chartCount += 1
-//                count = 0
-//                yearToCompare = dF.date(from: HistoricalData[histCount].date)
-//            }
-//
-//            if chartCount > 30 {
-//                break
-//            }
-//
-//        }
-//
-//        let colors = [UIColor.systemBlue, UIColor.systemRed, UIColor.systemIndigo, UIColor.systemOrange, UIColor.systemPink, UIColor.systemTeal, UIColor.systemYellow]
-//
-////        var opacityLevel: CGFloat = CGFloat(1 / arrayOfChartSeries.count)
-//        var colorCount = 0
-//        for c in arrayOfChartSeries {
-//            c.area = false // TODO: allow user to toggle
-//            c.color = colors[colorCount]
-//            c.line = true
-//            colorCount += 1
-//        }
-//
-////        chart.xLabels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-//        chart.add(arrayOfChartSeries)
-//        chart.showYLabelsAndGrid = false
-//        chart.showXLabelsAndGrid = false
         
         return chart
     }
