@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  stocks
+
+  Created by Alexander Rohrig on 7/15/20.
+  Copyright © 2020 Alexander Rohrig. All rights reserved.
+*/
+"sidebar_Navigation_Bar_Title" = "Stocks";
+"content_NoStock_Body" = "Select a stock to view it's graph.";
+"content_Navigation_Bar_Title" = "No Stock Selected";
+"Press 􀁌 to add a stock to your portfolio." = "Press 􀁌 to add a stock to your portfolio.";
+"ADD_TITLE" = "Add Stock";
+"CANCEL_BUTTON" = "Cancel";
+"ADD_SEARCH_PLACEHOLDER" = "Search for a stock symbol";
+"ADD_SEARCH_EXCHANGES_SUBTITLE" = "Searchable exchanges: NYS, NAS, PSE, BATS, ASE";
+"ADD_PREMIUM_SEARCHBYN+F" = "Upgrade to Premium for search by name and fragments.";
+"ADD_RESULT_UNABLETOFIND" = "Unable to find a stock with that symbol.";
+"ADD_RESULT_BUTTON" = "Add @s to your portfolio";
+"SETTINGS_TITLE" = "Settings";
+"DONE_BUTTON" = "Done";
+"CONTENT_PREMIUM_5+F" = "Upgrade to Premium to view more than 5 years of data and filter the chart";
+"UPGRADE_BUTTON" = "Upgrade to Premium";
+"PROVIDED_BY_IEX" = "Data provided by IEX Cloud";
+"FILTER_X_TITLE" = "X Range";
+"FILTER_X_SUBTITLE" = "'Include All Years' will show a line for each year of data, using only the selected month and day as the range.";
+"FILTER_X_START" = "X Axis Start Date";
+"FILTER_X_END" = "X Axis End Date";
+"FILTER_X_INCLUDE" = "Include All Years";
+"FILTER_X_CLEAR" = "Clear X Filter";
+"FILTER_Y_TITLE" = "Y Range";
+"FILTER_Y_START" = "Start of Y Range (Must be a number)";
+"FILTER_Y_END" = "End of Y Range (Must be a number)";
+"FILTER_Y_CLEAR" = "Clear Y Filter";
