@@ -1,3 +1,3 @@
-stocks
+Lines
 
-SwiftUI based stock app
+a SwiftUI based stock app
