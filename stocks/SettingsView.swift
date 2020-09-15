@@ -58,13 +58,17 @@ struct SettingsView: View {
                 Section() {
                     Text("Acknowledgements")
                 }
+                Section() {
+                    Button(NSLocalizedString("translationhelp", comment: "User can report or submit a translation")) {
+                        openLinkInSafari(url: "https://alexanderrohrig.com/translationhelp")
+                    }
+                    Text("PLEASE USE TESTFLIGHT TO REPORT BUGS")
+                    Button(NSLocalizedString("reportbug", comment: "User  can report a bug  with this button")) {
+                        openLinkInSafari(url: "https://github.com/Nsfwood/stocks/issues")
+                    }
+                    Text(NSLocalizedString("madewithlove", comment: "tells the user i made the app with lots of love"))
+                }
             }.navigationBarTitle(Text(Translation.settings_Title)).navigationBarItems(trailing: Button(Translation.done_Button) { self.isPresented = false })
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
-
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView(isPresented: ispre)
-//    }
-//}

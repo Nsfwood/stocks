@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+//import Cocoa
 
 struct SystemServices: ViewModifier {
     static var settings = SettingsStorage()
@@ -18,6 +19,17 @@ struct SystemServices: ViewModifier {
             // services
             .environmentObject(Self.settings)
     }
+}
+
+public func openLinkInSafari(url: String) {
+    let urlAsURL = URL(string: url)!
+    #if os(iOS)
+        UIApplication.shared.open(urlAsURL)
+    #elseif os(macOS)
+        NSWorkspace.shared.open(urlAsURL)
+    #else
+        print("running on new apple product")
+    #endif
 }
 
 public func createPreviewStock() -> Stock {

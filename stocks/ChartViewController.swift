@@ -396,7 +396,7 @@ struct ChartViewController: UIViewControllerRepresentable {
 //                model.getHistoricalData(from: stockToFetchDataFor.symbol!)
             }
             else if stockData.last?.date?.toDate.getDayOfYear() != Date().getDayOfYear() {
-                print("stock data out of date")
+                print("data from \(stockData.last?.date), needs update")
             }
             else {
                 print("making chart...")
