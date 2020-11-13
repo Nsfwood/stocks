@@ -49,6 +49,7 @@ struct ChartViewController: UIViewControllerRepresentable {
 //    @Binding var indexes: [Int]?
     class RandomClass { }
     let x = RandomClass()
+    @ObservedObject var model = DetailModel()
 //    @ObservedObject var model = ChartModel()
     @EnvironmentObject var settings: SettingsStorage
     var stockToFetchDataFor: Stock
@@ -393,11 +394,11 @@ struct ChartViewController: UIViewControllerRepresentable {
             // TODO: add if data is out of date
             if stockData.isEmpty {
                 print("app needs to download data")
-//                model.getHistoricalData(from: stockToFetchDataFor.symbol!)
+                //model.getHistoricalData(from: stockToFetchDataFor.symbol!)
             }
-            else if stockData.last?.date?.toDate.getDayOfYear() != Date().getDayOfYear() {
-                print("data from \(stockData.last?.date), needs update")
-            }
+//            else if stockData.last?.date?.toDate.getDayOfYear() != Date().getDayOfYear() {
+//                print("data from \(stockData.last?.date), needs update")
+//            }
             else {
                 print("making chart...")
                 

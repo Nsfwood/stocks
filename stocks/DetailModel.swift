@@ -42,7 +42,7 @@ class DetailModel: ObservableObject {
         .sink(receiveCompletion: { _ in }, receiveValue: {
             self.historicalData = $0
 //            self.historicalDataAsDayArray = self.historicalPricesToDays(input: $0, stock: stock)
-            self.insertDataIntoCoreData(dataPoints: $0, symbol: stock.symbol!)
+//            self.insertDataIntoCoreData(dataPoints: $0, symbol: stock.symbol!)
             print("received data ☺️")
         })
     }

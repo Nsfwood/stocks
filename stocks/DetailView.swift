@@ -38,15 +38,16 @@ struct DetailView: View {
 //                XAxisLabelView(StartOfAxisDate: Date()).modifier(SystemServices())
 //                    .padding(.bottom)
             }
-            .onAppear(perform: {
-                if let x = self.detailStock.days?.allObjects as? [Day] {
-                    if x.isEmpty {
-                        print("stock has no data")
-                        // TODO: uncomment
-//                        self.model.fetchHistoricalData(stock: self.detailStock)
-                    }
-                }
-            })
+//            .onAppear(perform: {
+//                print(model.$historicalData.count())
+//                if let x = self.detailStock.days?.allObjects as? [Day] {
+//                    if x.isEmpty {
+//                        print("stock has no data")
+//                        // TODO: uncomment
+////                        self.model.fetchHistoricalData(stock: self.detailStock)
+//                    }
+//                }
+//            })
 //            .onAppear(perform: {
 //                // TODO: get new data if older than 1 day
 ////                print(self.model.stockData)
@@ -120,6 +121,20 @@ struct DetailView: View {
             }
         }
     }
+    
+}
+
+struct LineChartSwiftUI: UIViewRepresentable {
+    let chart = LineChartView()
+    
+    func makeUIView(context: Context) -> some UIView {
+        <#code#>
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        <#code#>
+    }
+    
     
 }
 

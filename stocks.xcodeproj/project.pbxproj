@@ -76,6 +76,7 @@
 		081D99A924B29F09005B030F /* CEOPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEOPopoverView.swift; sourceTree = "<group>"; };
 		081D99AB24B2A0D5005B030F /* CEOPopoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEOPopoverModel.swift; sourceTree = "<group>"; };
 		082E0BDC24BF72140083D769 /* TranslationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStrings.swift; sourceTree = "<group>"; };
+		08A93A70253241BA0008333C /* Acknowledgements.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Acknowledgements.md; path = "../../../../code/Swift Projects/stocks/stocks/Acknowledgements.md"; sourceTree = "<group>"; };
 		08BB2C4524BF7F1800878E4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08BB2C4724BF887500878E4E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08C3DB1824A4E178005424A7 /* Lines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lines.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				08C3DB3424A4E1A7005424A7 /* stocks.entitlements */,
+				08A93A70253241BA0008333C /* Acknowledgements.md */,
 				08C3DB4C24A5455B005424A7 /* Delegates */,
 				081D995824ACE2EE005B030F /* WebServiceSecret.swift */,
 				08C3DB3724A4EB9B005424A7 /* WebService.swift */,

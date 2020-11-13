@@ -46,7 +46,9 @@ extension IEXMachine {
     }
     
     static func requestHistorical(from symbol: String) -> AnyPublisher<HistoricalPrices, Error> {
-        let request = URLRequest(url: createHistoricalURL(symbol: symbol))
+//        let request = URLRequest(url: createHistoricalURL(symbol: symbol))
+        // TODO: set up cache
+        let request = URLRequest(url: createHistoricalURL(symbol: symbol), cachePolicy: .reloadRevalidatingCacheData, timeoutInterval: .pi)
         print("requesting historical data... weight: 2")
         return apiMachine.run(request)
             .map(\.value)
