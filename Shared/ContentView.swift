@@ -36,7 +36,7 @@ struct ContentView: View {
                             if stock.isFavorite {
                                 Image(systemName: "star.fill")
                             }
-                            Text(getCurrencyFormat(from: stock.lastClosePrice))
+                            Text(getCurrencyFormat(from: stock.lastClosePrice)).bold()
                         }
                     }
                 }
