@@ -75,21 +75,34 @@ struct DetailView: View {
             // information group
             Group {
                 // link to https://iexcloud.io
-                Button(Translation.PROVIDED_BY_IEX) { self.showIEXAlert = true }
+                Link("Data provided by IEX Cloud", destination: URL(string: "https://iexcloud.io")!)
+                //Button(Translation.PROVIDED_BY_IEX) { self.showIEXAlert = true }
                     .foregroundColor(Color(UIColor.systemGray3))
             }.padding()
         .navigationBarTitle(Text("\(detailStock.name ?? "error")"), displayMode: .inline)
         .navigationBarItems(leading:
             HStack {
                 // TODO: NavigationLink to fullscreen graph
-                Button( action: { print("expand/minimize") } ) { Image(systemName: "arrow.up.left.and.arrow.down.right") }
+//                Button( action: { print("expand/minimize") } ) { Image(systemName: "arrow.up.left.and.arrow.down.right") }
                 //Button("Download Data") { self.model.getHistoricalData(from: self.detailStock.symbol!) }
-                Spacer()
+//                Spacer()
             }
             ,trailing: HStack {
                 Button( action: { self.showCEOPopover = true }){ Image(systemName: "person") }.popover(isPresented: self.$showCEOPopover) { CEOPopoverView(symbol: self.detailStock.symbol!).modifier(SystemServices()) }.disabled(!settings.isPro)
                 Button( action: { self.showFilterPopover = true }){ Image(systemName: "line.horizontal.3.decrease.circle") }.popover(isPresented: self.$showFilterPopover) { FilterPopoverView().modifier(SystemServices()) }.disabled(!settings.isPro)
-                Button( action: { self.saveAsFavorite() } ) { if detailStock.isFavorite { Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemOrange)) } else { Image(systemName: "star") } }
+                Button( action: {
+                            self.saveAsFavorite()
+                    
+                } )
+                {
+                    if detailStock.isFavorite {
+                        Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemOrange))
+                        
+                    }
+                    else {
+                        Image(systemName: "star")
+                        
+                    } }
             }
             )
         }
@@ -124,19 +137,19 @@ struct DetailView: View {
     
 }
 
-struct LineChartSwiftUI: UIViewRepresentable {
-    let chart = LineChartView()
-    
-    func makeUIView(context: Context) -> some UIView {
-        <#code#>
-    }
-    
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        <#code#>
-    }
-    
-    
-}
+//struct LineChartSwiftUI: UIViewRepresentable {
+//    let chart = LineChartView()
+//    
+//    func makeUIView(context: Context) -> some UIView {
+//        <#code#>
+//    }
+//    
+//    func updateUIView(_ uiView: UIViewType, context: Context) {
+//        <#code#>
+//    }
+//    
+//    
+//}
 
 //struct DetailView_Previews: PreviewProvider {
 //    static var previews: some View {

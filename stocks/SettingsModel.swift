@@ -35,18 +35,12 @@ class SettingsStorage: ObservableObject {
     @Published var includeAllYears: Bool = true
     @Published var yRangeStart: String = ""
     @Published var yRangeEnd: String = ""
-    
-    // settings
     @Published var startChartsAtJan1 = false
 //    @Published var isPro = false
     @Published var icon = 0
-    
-    // move to settings bundle
     @Published var stockLogo = true
     @Published var showGraphArea = false
     @Published var colorSet = 0
-    
-    // other
     @Published var canAccessInternet = true
     @Published var shouldUpdateChart = true
     @Published var savedStocks = 0

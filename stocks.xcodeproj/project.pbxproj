@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,28 @@
 		081D99AA24B29F09005B030F /* CEOPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D99A924B29F09005B030F /* CEOPopoverView.swift */; };
 		081D99AC24B2A0D5005B030F /* CEOPopoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D99AB24B2A0D5005B030F /* CEOPopoverModel.swift */; };
 		082E0BDD24BF72140083D769 /* TranslationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082E0BDC24BF72140083D769 /* TranslationStrings.swift */; };
+		0860DEEE2561FE200002B93C /* HistoricalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DEED2561FE200002B93C /* HistoricalData.swift */; };
+		0860DEEF2561FE200002B93C /* HistoricalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860DEED2561FE200002B93C /* HistoricalData.swift */; };
+		089E91512561D89300F11A92 /* krasnoyarskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913C2561D88F00F11A92 /* krasnoyarskApp.swift */; };
+		089E91522561D89300F11A92 /* krasnoyarskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913C2561D88F00F11A92 /* krasnoyarskApp.swift */; };
+		089E91532561D89300F11A92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913D2561D88F00F11A92 /* ContentView.swift */; };
+		089E91542561D89300F11A92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913D2561D88F00F11A92 /* ContentView.swift */; };
+		089E91552561D89300F11A92 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913E2561D88F00F11A92 /* Persistence.swift */; };
+		089E91562561D89300F11A92 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E913E2561D88F00F11A92 /* Persistence.swift */; };
+		089E91572561D89300F11A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 089E913F2561D89200F11A92 /* Assets.xcassets */; };
+		089E91582561D89300F11A92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 089E913F2561D89200F11A92 /* Assets.xcassets */; };
+		089E91622561D92600F11A92 /* WebServiceSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D995824ACE2EE005B030F /* WebServiceSecret.swift */; };
+		089E91662561D92700F11A92 /* WebServiceSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D995824ACE2EE005B030F /* WebServiceSecret.swift */; };
+		089E916B2561E13C00F11A92 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E916A2561E13C00F11A92 /* PreferencesView.swift */; };
+		089E916C2561E13C00F11A92 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E916A2561E13C00F11A92 /* PreferencesView.swift */; };
+		089E91A22561EAB900F11A92 /* krasnoyarsk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 089E913A2561D88F00F11A92 /* krasnoyarsk.xcdatamodeld */; };
+		089E91A62561EABA00F11A92 /* krasnoyarsk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 089E913A2561D88F00F11A92 /* krasnoyarsk.xcdatamodeld */; };
+		089E91B72561EBF500F11A92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E91B62561EBF500F11A92 /* DetailView.swift */; };
+		089E91B82561EBF500F11A92 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E91B62561EBF500F11A92 /* DetailView.swift */; };
+		089E91CA2561EDA700F11A92 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D996424AD2B99005B030F /* SystemServices.swift */; };
+		089E91CB2561EDA700F11A92 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D996424AD2B99005B030F /* SystemServices.swift */; };
+		089E91CF2561EDB300F11A92 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D0EFF24AAC66700E0AE10 /* SettingsModel.swift */; };
+		089E91D32561EDB300F11A92 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D0EFF24AAC66700E0AE10 /* SettingsModel.swift */; };
 		08BB2C4424BF7F1800878E4E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08BB2C4624BF7F1800878E4E /* Localizable.strings */; };
 		08C3DB1C24A4E178005424A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C3DB1B24A4E178005424A7 /* AppDelegate.swift */; };
 		08C3DB1F24A4E178005424A7 /* stocks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 08C3DB1D24A4E178005424A7 /* stocks.xcdatamodeld */; };
@@ -50,7 +72,6 @@
 		08D5049524ABA8D60071DBC1 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5049424ABA8D50071DBC1 /* ButtonStyles.swift */; };
 		08D5049724ABFA9B0071DBC1 /* FilterPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5049624ABFA9B0071DBC1 /* FilterPopoverView.swift */; };
 		08F3A11624CF829E0053A248 /* PathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3A11524CF829E0053A248 /* PathExtensions.swift */; };
-		08F3A11924CF841F0053A248 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 08F3A11824CF841F0053A248 /* SwiftUICharts */; };
 		08F3A11E24CF8A980053A248 /* ZanderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3A11D24CF8A980053A248 /* ZanderChartView.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +97,20 @@
 		081D99A924B29F09005B030F /* CEOPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEOPopoverView.swift; sourceTree = "<group>"; };
 		081D99AB24B2A0D5005B030F /* CEOPopoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEOPopoverModel.swift; sourceTree = "<group>"; };
 		082E0BDC24BF72140083D769 /* TranslationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStrings.swift; sourceTree = "<group>"; };
+		0860DEED2561FE200002B93C /* HistoricalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalData.swift; sourceTree = "<group>"; };
+		0860DEF3256202630002B93C /* IAPconfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = IAPconfig.storekit; sourceTree = "<group>"; };
+		089E913B2561D88F00F11A92 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		089E913C2561D88F00F11A92 /* krasnoyarskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = krasnoyarskApp.swift; sourceTree = "<group>"; };
+		089E913D2561D88F00F11A92 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		089E913E2561D88F00F11A92 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		089E913F2561D89200F11A92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		089E91442561D89200F11A92 /* krasnoyarsk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = krasnoyarsk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		089E91462561D89300F11A92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		089E914B2561D89300F11A92 /* krasnoyarsk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = krasnoyarsk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		089E914D2561D89300F11A92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		089E914E2561D89300F11A92 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		089E916A2561E13C00F11A92 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		089E91B62561EBF500F11A92 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		08A93A70253241BA0008333C /* Acknowledgements.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Acknowledgements.md; path = "../../../../code/Swift Projects/stocks/stocks/Acknowledgements.md"; sourceTree = "<group>"; };
 		08BB2C4524BF7F1800878E4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08BB2C4724BF887500878E4E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -107,11 +142,24 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		089E91412561D89200F11A92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089E91482561D89300F11A92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08C3DB1524A4E178005424A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08F3A11924CF841F0053A248 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,11 +183,55 @@
 			path = "No Longer In Use";
 			sourceTree = "<group>";
 		};
+		089E91392561D88F00F11A92 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				089E913C2561D88F00F11A92 /* krasnoyarskApp.swift */,
+				089E916A2561E13C00F11A92 /* PreferencesView.swift */,
+				089E913D2561D88F00F11A92 /* ContentView.swift */,
+				089E91B62561EBF500F11A92 /* DetailView.swift */,
+				0860DEED2561FE200002B93C /* HistoricalData.swift */,
+				089E913E2561D88F00F11A92 /* Persistence.swift */,
+				089E913F2561D89200F11A92 /* Assets.xcassets */,
+				089E913A2561D88F00F11A92 /* krasnoyarsk.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		089E91452561D89300F11A92 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				089E91462561D89300F11A92 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		089E914C2561D89300F11A92 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				089E914D2561D89300F11A92 /* Info.plist */,
+				089E914E2561D89300F11A92 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		089E91D72561F73000F11A92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		08C3DB0F24A4E178005424A7 = {
 			isa = PBXGroup;
 			children = (
+				0860DEF3256202630002B93C /* IAPconfig.storekit */,
 				08C3DB1A24A4E178005424A7 /* stocks */,
+				089E91392561D88F00F11A92 /* Shared */,
+				089E91452561D89300F11A92 /* iOS */,
+				089E914C2561D89300F11A92 /* macOS */,
 				08C3DB1924A4E178005424A7 /* Products */,
+				089E91D72561F73000F11A92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				08C3DB1824A4E178005424A7 /* Lines.app */,
+				089E91442561D89200F11A92 /* krasnoyarsk.app */,
+				089E914B2561D89300F11A92 /* krasnoyarsk.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +341,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		089E91432561D89200F11A92 /* krasnoyarsk (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 089E91592561D89300F11A92 /* Build configuration list for PBXNativeTarget "krasnoyarsk (iOS)" */;
+			buildPhases = (
+				089E91402561D89200F11A92 /* Sources */,
+				089E91412561D89200F11A92 /* Frameworks */,
+				089E91422561D89200F11A92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "krasnoyarsk (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "krasnoyarsk (iOS)";
+			productReference = 089E91442561D89200F11A92 /* krasnoyarsk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		089E914A2561D89300F11A92 /* krasnoyarsk (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 089E915C2561D89300F11A92 /* Build configuration list for PBXNativeTarget "krasnoyarsk (macOS)" */;
+			buildPhases = (
+				089E91472561D89300F11A92 /* Sources */,
+				089E91482561D89300F11A92 /* Frameworks */,
+				089E91492561D89300F11A92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "krasnoyarsk (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "krasnoyarsk (macOS)";
+			productReference = 089E914B2561D89300F11A92 /* krasnoyarsk.app */;
+			productType = "com.apple.product-type.application";
+		};
 		08C3DB1724A4E178005424A7 /* stocks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08C3DB3124A4E17C005424A7 /* Build configuration list for PBXNativeTarget "stocks" */;
@@ -261,7 +393,6 @@
 			);
 			name = stocks;
 			packageProductDependencies = (
-				08F3A11824CF841F0053A248 /* SwiftUICharts */,
 			);
 			productName = stocks;
 			productReference = 08C3DB1824A4E178005424A7 /* Lines.app */;
@@ -273,10 +404,16 @@
 		08C3DB1024A4E178005424A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Alexander Rohrig";
 				TargetAttributes = {
+					089E91432561D89200F11A92 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					089E914A2561D89300F11A92 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					08C3DB1724A4E178005424A7 = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -293,18 +430,35 @@
 			);
 			mainGroup = 08C3DB0F24A4E178005424A7;
 			packageReferences = (
-				08F3A11724CF841F0053A248 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 08C3DB1924A4E178005424A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				08C3DB1724A4E178005424A7 /* stocks */,
+				089E91432561D89200F11A92 /* krasnoyarsk (iOS) */,
+				089E914A2561D89300F11A92 /* krasnoyarsk (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		089E91422561D89200F11A92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089E91572561D89300F11A92 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089E91492561D89300F11A92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089E91582561D89300F11A92 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08C3DB1624A4E178005424A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +474,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		089E91402561D89200F11A92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089E91CF2561EDB300F11A92 /* SettingsModel.swift in Sources */,
+				089E91CA2561EDA700F11A92 /* SystemServices.swift in Sources */,
+				089E91A22561EAB900F11A92 /* krasnoyarsk.xcdatamodeld in Sources */,
+				089E91512561D89300F11A92 /* krasnoyarskApp.swift in Sources */,
+				089E916B2561E13C00F11A92 /* PreferencesView.swift in Sources */,
+				089E91B72561EBF500F11A92 /* DetailView.swift in Sources */,
+				089E91552561D89300F11A92 /* Persistence.swift in Sources */,
+				0860DEEE2561FE200002B93C /* HistoricalData.swift in Sources */,
+				089E91622561D92600F11A92 /* WebServiceSecret.swift in Sources */,
+				089E91532561D89300F11A92 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089E91472561D89300F11A92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089E91D32561EDB300F11A92 /* SettingsModel.swift in Sources */,
+				089E91CB2561EDA700F11A92 /* SystemServices.swift in Sources */,
+				089E91A62561EABA00F11A92 /* krasnoyarsk.xcdatamodeld in Sources */,
+				089E91522561D89300F11A92 /* krasnoyarskApp.swift in Sources */,
+				089E916C2561E13C00F11A92 /* PreferencesView.swift in Sources */,
+				089E91B82561EBF500F11A92 /* DetailView.swift in Sources */,
+				089E91562561D89300F11A92 /* Persistence.swift in Sources */,
+				0860DEEF2561FE200002B93C /* HistoricalData.swift in Sources */,
+				089E91662561D92700F11A92 /* WebServiceSecret.swift in Sources */,
+				089E91542561D89300F11A92 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08C3DB1424A4E178005424A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,6 +577,103 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		089E915A2561D89300F11A92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3865YC2YEY;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.krasnoyarsk;
+				PRODUCT_NAME = krasnoyarsk;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		089E915B2561D89300F11A92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3865YC2YEY;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.krasnoyarsk;
+				PRODUCT_NAME = krasnoyarsk;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		089E915D2561D89300F11A92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3865YC2YEY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.krasnoyarsk;
+				PRODUCT_NAME = krasnoyarsk;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		089E915E2561D89300F11A92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3865YC2YEY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.krasnoyarsk;
+				PRODUCT_NAME = krasnoyarsk;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		08C3DB2F24A4E17C005424A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -516,6 +801,7 @@
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = stocks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -523,8 +809,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.stocks;
 				PRODUCT_NAME = Lines;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "2,6";
 			};
 			name = Debug;
 		};
@@ -539,6 +826,7 @@
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = stocks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -546,14 +834,33 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexanderrohrig.stocks;
 				PRODUCT_NAME = Lines;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "2,6";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		089E91592561D89300F11A92 /* Build configuration list for PBXNativeTarget "krasnoyarsk (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				089E915A2561D89300F11A92 /* Debug */,
+				089E915B2561D89300F11A92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		089E915C2561D89300F11A92 /* Build configuration list for PBXNativeTarget "krasnoyarsk (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				089E915D2561D89300F11A92 /* Debug */,
+				089E915E2561D89300F11A92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		08C3DB1324A4E178005424A7 /* Build configuration list for PBXProject "stocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -574,26 +881,17 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		08F3A11724CF841F0053A248 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		08F3A11824CF841F0053A248 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 08F3A11724CF841F0053A248 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
-
 /* Begin XCVersionGroup section */
+		089E913A2561D88F00F11A92 /* krasnoyarsk.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				089E913B2561D88F00F11A92 /* Shared.xcdatamodel */,
+			);
+			currentVersion = 089E913B2561D88F00F11A92 /* Shared.xcdatamodel */;
+			path = krasnoyarsk.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		08C3DB1D24A4E178005424A7 /* stocks.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

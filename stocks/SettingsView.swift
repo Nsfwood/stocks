@@ -33,7 +33,6 @@ struct SettingsView: View {
                 Section(header: Text("App Icon")) {
                     Text("Coming Soon")
                 }
-                // TODO: maybe move to device settings
                 Section(header: Text("Graphics")) {
                     Toggle(isOn: $settings.startChartsAtJan1) {
                         Text("Start Chart on January 1st")
@@ -51,17 +50,17 @@ struct SettingsView: View {
 //                        }
 //                    }
                 }
+                #if os(iOS)
                 Section(header: Text("Tags")) {
                     Text("Coming Soon")
                 }
-                // TODO: move to device settings
+                #endif
                 Section() {
                     Text("Acknowledgements")
-                }
-                Section() {
-                    Button(NSLocalizedString("translationhelp", comment: "User can report or submit a translation")) {
-                        openLinkInSafari(url: "https://alexanderrohrig.com/translationhelp")
-                    }
+//                    Button(NSLocalizedString("translationhelp", comment: "User can report or submit a translation")) {
+//                        openLinkInSafari(url: "https://alexanderrohrig.com/translationhelp")
+//                    }
+                    Link("Help With Translations", destination: URL(string: "https://alexanderrohrig.com/translationhelp")!)
                     Text("PLEASE USE TESTFLIGHT TO REPORT BUGS")
                     Button(NSLocalizedString("reportbug", comment: "User  can report a bug  with this button")) {
                         openLinkInSafari(url: "https://github.com/Nsfwood/stocks/issues")

@@ -8,13 +8,6 @@
 
 import SwiftUI
 
-private let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .medium
-    dateFormatter.timeStyle = .medium
-    return dateFormatter
-}()
-
 // TODO: limit ability to add more than 3 stocks to premium
 
 struct ContentView: View {
@@ -66,7 +59,7 @@ struct MasterView: View {
 //        Button("Test") { print("\(self.stocks.count) stocks saved to core data") }
         List {
             if stocks.isEmpty {
-                Text(Translation.sidebar_Item_AddPrompt) // Press the 􀁌 button to add a stock to your portfolio.
+                Text("Press \(Image(systemName: "plus.circle")) to add a stock.") // Press the 􀁌 button to add a stock to your portfolio.
             }
             ForEach(stocks, id: \.self) { stock in
                 NavigationLink(destination: DetailView(detailStock: stock)) {
